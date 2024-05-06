@@ -1,5 +1,6 @@
 package com.example.sulat.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.splashscreen.SplashScreen;
 
 import com.example.sulat.R;
+import com.example.sulat.ui.auth.LoginActivity;
+import com.example.sulat.ui.auth.SignUpActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
     Button btnLogin, btnSignup;
@@ -29,11 +32,16 @@ public class WelcomeActivity extends AppCompatActivity {
 
         //BUTTONS FOR LOGIN AND SIGNUP
         btnLogin = findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnLogin.setOnClickListener(v -> {
+            Intent intentLogin = new Intent(WelcomeActivity.this, LoginActivity.class);
+            startActivity(intentLogin);
+        });
 
-            }
+
+        btnSignup = findViewById(R.id.btnRegister);
+        btnSignup.setOnClickListener(v -> {
+            Intent intentSignup = new Intent(WelcomeActivity.this, SignUpActivity.class);
+            startActivity(intentSignup);
         });
     }
 }
