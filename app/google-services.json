@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "844240046683",
+    "project_id": "sulat-e9f3a",
+    "storage_bucket": "sulat-e9f3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844240046683:android:b476d549ed6d5b69ce0d7e",
+        "android_client_info": {
+          "package_name": "com.example.sulat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFP3B7dbKE2k-Rl0XONFijuKr5_g2ZOpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

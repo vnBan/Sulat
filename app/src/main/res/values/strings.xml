@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Sulat</string>
+    <string name="my_notes">My notes</string>
+    <string name="search_notes">Search Notes</string>
+    <string name="note_title">Note Title</string>
+    <string name="note_subtitle">Note Subtitle</string>
+    <string name="type_note_here">Type note here</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="log_in_to_sulat">Log in to Sulat</string>
+    <string name="email">Email</string>
+    <string name="email_input">Email</string>
+    <string name="password">Password</string>
+    <string name="passwordtxt">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account"><u>New user? Create Account</u></string>
+</resources>
