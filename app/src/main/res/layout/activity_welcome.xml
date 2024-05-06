@@ -49,9 +49,8 @@
                 android:id="@+id/btnRegister"
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:backgroundTint="@drawable/background_register_button"
+                android:background="@drawable/background_register_button"
                 android:text="@string/register"
-
                 android:textSize="@dimen/_16ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
