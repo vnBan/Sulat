@@ -16,11 +16,11 @@ import com.example.sulat.R;
 import com.example.sulat.ui.auth.LoginActivity;
 import com.example.sulat.ui.auth.SignUpActivity;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity{
     Button btnLogin, btnSignup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.installSplashScreen(this);
+        //SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_welcome);
@@ -29,7 +29,6 @@ public class WelcomeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         //BUTTONS FOR LOGIN AND SIGNUP
         btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(v -> {
