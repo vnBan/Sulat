@@ -103,6 +103,22 @@
         android:paddingEnd="@dimen/_12sdp"
         android:paddingStart="@dimen/_12sdp"
         app:layout_constraintTop_toBottomOf="@id/btnLogin"/>
+
+    <TextView
+        android:id="@+id/passwordForgot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:gravity="right"
+        android:paddingEnd="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createAccount"
+        app:layout_constraintVertical_bias="0.19999999" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
