@@ -15,11 +15,14 @@ import androidx.core.splashscreen.SplashScreen;
 import com.example.sulat.R;
 import com.example.sulat.ui.auth.LoginActivity;
 import com.example.sulat.ui.auth.SignUpActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class WelcomeActivity extends AppCompatActivity{
     Button btnLogin, btnSignup;
+    FirebaseAuth fAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         //SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);

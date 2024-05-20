@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +54,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         if(fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
         }
 
 
@@ -62,7 +62,10 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
-
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches() ){
+                    mEmail.setError("Email is invalid");
+                    return;
+                }
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email is Required.");
                     return;
