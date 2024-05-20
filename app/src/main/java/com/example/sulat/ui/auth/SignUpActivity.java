@@ -127,21 +127,6 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     }
                 });
-//                fAuth.createUserWithEmailAndPassword(email, password)
-//                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    // Sign in success, update UI with the signed-in user's information
-//                                    Log.d(TAG, "createUserWithEmail:success");
-//                                    FirebaseUser user = fAuth.getCurrentUser();
-//                                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-//                                } else {
-//                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-//                                    Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
             }
         });
 
