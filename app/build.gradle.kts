@@ -45,4 +45,5 @@ dependencies {
     implementation("com.intuit.sdp:sdp-android:1.1.1")
     implementation("com.intuit.ssp:ssp-android:1.1.1")
     implementation("jp.wasabeef:richeditor-android:2.0.0")
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
 }

@@ -1,10 +1,6 @@
 package com.example.sulat.ui.main;
 
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.sulat.R;
 import com.example.sulat.database.Notes;
-import com.example.sulat.database.Utility;
+import com.example.sulat.Utility;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
@@ -46,7 +42,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         imgBack = findViewById(R.id.imgBack);
         imgSaveNote = findViewById(R.id.imageSave);
 
-        txtTimeAndDate.setText(String.valueOf(Timestamp.now()));
+        txtTimeAndDate.setText(Utility.timeStampToString(Timestamp.now()));
 
         imgBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
         imgSaveNote.setOnClickListener(v -> saveNote());
@@ -66,7 +62,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         note.setTitle(noteTitle);
         note.setSubtitle(noteSubtitle);
         note.setContent(noteContent);
-        note.setTimeDate(String.valueOf(Timestamp.now()));
+        note.setTimeDate(Utility.timeStampToString(Timestamp.now()));
 
         saveToFirebase(note);
     }
