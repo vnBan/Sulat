@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText mEmail,mPassword;
+    EditText mEmail,mPassword, mConfirmPassword;
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
@@ -48,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
         mPassword   = findViewById(R.id.inputPassword);
         mRegisterBtn= findViewById(R.id.btnRegister);
         mLoginBtn   = findViewById(R.id.alreadyHaveAcc);
-
+        mConfirmPassword = findViewById(R.id.inputConfirmPassword);
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -62,6 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
+                String confirmPassword = mConfirmPassword.getText().toString().trim();
                 if(!Patterns.EMAIL_ADDRESS.matcher(email).matches() ){
                     mEmail.setError("Email is invalid");
                     return;
@@ -81,6 +82,10 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
+                if(!password.equals(confirmPassword)){
+                    mConfirmPassword.setError("Password does not match!");
+                    return;
+                }
                 // register the user in firebase
 
                 fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

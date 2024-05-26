@@ -100,6 +100,14 @@
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_link"
             app:tint="@color/colorIcons"/>
+        <ImageView
+            android:id="@+id/imageLogout"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_logout"
+            app:tint="@color/colorIcons"/>
     </LinearLayout>
 
     <ImageView

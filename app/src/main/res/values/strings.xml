@@ -16,4 +16,13 @@
     <string name="create_account"><u>New user? Create Account</u></string>
     <string name="forgot_password">Forgot Password ?</string>
     <string name="already_registered_login_here">Already Registered ? Login Here</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="font_size">Font Size</string>
+    <string name="keyboard_behavior">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
+    <string-array name="font_sizes">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+        <item>Extra Large</item>
+    </string-array>
 </resources>

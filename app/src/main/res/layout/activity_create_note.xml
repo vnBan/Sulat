@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,16 +7,22 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context=".ui.main.CreateNoteActivity">
+
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/_40sdp"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/_10sdp">
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true">
+
             <ImageView
                 android:id="@+id/imgBack"
                 android:layout_width="@dimen/_30sdp"
@@ -26,9 +32,9 @@
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_back"
-                app:tint="@color/colorIcons"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorIcons" />
 
             <ImageView
                 android:id="@+id/imageSave"
@@ -39,10 +45,10 @@
                 android:contentDescription="@string/app_name"
                 android:padding="@dimen/_4sdp"
                 android:src="@drawable/ic_done"
-                app:tint="@color/colorIcons"
                 app:layout_constraintBottom_toBottomOf="@id/imgBack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imgBack"/>
+                app:layout_constraintTop_toTopOf="@+id/imgBack"
+                app:tint="@color/colorIcons" />
 
             <EditText
                 android:id="@+id/inputNoteTitle"
@@ -59,7 +65,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorTextHint"
                 android:textSize="@dimen/_16ssp"
-                app:layout_constraintTop_toBottomOf="@id/imgBack"/>
+                app:layout_constraintTop_toBottomOf="@id/imgBack" />
 
             <TextView
                 android:id="@+id/textDateTime"
@@ -70,7 +76,7 @@
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toEndOf="@+id/inputNoteTitle"
                 app:layout_constraintStart_toStartOf="@id/inputNoteTitle"
-                app:layout_constraintTop_toBottomOf="@id/inputNoteTitle"/>
+                app:layout_constraintTop_toBottomOf="@id/inputNoteTitle" />
 
             <EditText
                 android:id="@+id/inputNoteSubtitle"
@@ -91,7 +97,7 @@
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/viewSubtitleIndication"
-                app:layout_constraintTop_toBottomOf="@id/textDateTime"/>
+                app:layout_constraintTop_toBottomOf="@id/textDateTime" />
 
             <View
                 android:id="@+id/viewSubtitleIndication"
@@ -101,9 +107,9 @@
                 android:background="@drawable/background_subtitle_indicator"
                 app:layout_constraintBottom_toBottomOf="@id/inputNoteSubtitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/inputNoteSubtitle"/>
+                app:layout_constraintTop_toTopOf="@id/inputNoteSubtitle" />
 
-            <EditText
+            <jp.wasabeef.richeditor.RichEditor
                 android:id="@+id/inputNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,7 +117,7 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_15sdp"
-                android:background="@null"
+                android:background="@color/colorPrimary"
                 android:gravity="top"
                 android:hint="@string/type_note_here"
                 android:importantForAutofill="no"
@@ -122,7 +128,16 @@
                 android:textColorHint="@color/colorTextHint"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle"/>
+                app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include
+        layout="@layout/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

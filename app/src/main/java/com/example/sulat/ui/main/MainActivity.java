@@ -16,13 +16,16 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.example.sulat.R;
 import com.example.sulat.Utility;
 import com.example.sulat.database.Notes;
+import com.example.sulat.ui.auth.LoginActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.Query;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView imageAddNoteMain;
+    ImageView imageAddNoteMain, imageLogout;
     RecyclerView notesDisplay;
     NotesAdapter notesAdapter;
+    FirebaseAuth fAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //SplashScreen.installSplashScreen(this);
@@ -40,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
             Intent makeNote = new Intent(getApplicationContext(), CreateNoteActivity.class);
             startActivity(makeNote);
         });
+
+        imageLogout = findViewById(R.id.imageLogout);
+        imageLogout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent logoutIntent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(logoutIntent);
+            finish();
+        });
         setupRecyclerView();
     }
 
@@ -50,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         notesAdapter = new NotesAdapter(options, this);
         notesDisplay.setAdapter(notesAdapter);
     }
-
     @Override
     protected void onStart() {
         super.onStart();

@@ -1,8 +1,12 @@
 package com.example.sulat.ui.main;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,10 +25,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
+import jp.wasabeef.richeditor.RichEditor;
+
 public class CreateNoteActivity extends AppCompatActivity {
-    EditText txtTitle, txtSubtitle, txtNoteContent;
+    EditText txtTitle, txtSubtitle;
+    RichEditor txtNoteContent;
     TextView txtTimeAndDate;
     ImageView imgSaveNote, imgBack;
+    Spinner spinnerFontSizes;
+    Button btnItalic, btnBold, btnUnderline, btnIndent, btnOutdent, btnAlignLeft, btnAlignRight, btnAlignCenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,18 +50,50 @@ public class CreateNoteActivity extends AppCompatActivity {
         txtTimeAndDate = findViewById(R.id.textDateTime);
         imgBack = findViewById(R.id.imgBack);
         imgSaveNote = findViewById(R.id.imageSave);
+        spinnerFontSizes = findViewById(R.id.spinner_font_size);
+        btnBold = findViewById(R.id.btnBold);
+        btnItalic = findViewById(R.id.btnItalic);
+        btnUnderline = findViewById(R.id.btnUnderline);
+        btnAlignCenter = findViewById(R.id.btnCenter);
+        btnAlignLeft = findViewById(R.id.btnLeft);
+        btnAlignRight = findViewById(R.id.btnRight);
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.font_sizes, R.layout.spinner_item);
+        spinnerFontSizes.setAdapter(adapter);
         txtTimeAndDate.setText(Utility.timeStampToString(Timestamp.now()));
 
         imgBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
-        imgSaveNote.setOnClickListener(v -> saveNote());
 
+
+        txtNoteContent.setEditorFontColor(Color.WHITE);
+        txtNoteContent.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        //EDITOR TOGGLE FUNCTIONS
+        btnItalic.setOnClickListener(v -> {
+            txtNoteContent.setItalic();
+        });
+        btnBold.setOnClickListener(v -> {
+            txtNoteContent.setBold();
+        });
+        btnUnderline.setOnClickListener(v->{
+            txtNoteContent.setUnderline();
+        });
+        btnAlignRight.setOnClickListener(v -> {
+            txtNoteContent.setAlignRight();
+        });
+        btnAlignCenter.setOnClickListener(v -> {
+            txtNoteContent.setAlignCenter();
+        });
+        btnAlignCenter.setOnClickListener(v -> {
+            txtNoteContent.setAlignCenter();
+        });
+
+        imgSaveNote.setOnClickListener(v -> saveNote());
     }
 
     private void saveNote(){
         String noteTitle = txtTitle.getText().toString();
         String noteSubtitle = txtSubtitle.getText().toString();
-        String noteContent = txtNoteContent.getText().toString();
+        String noteContent = txtNoteContent.getHtml();
 
         if(noteTitle.isEmpty()){
             txtTitle.setError("Title is required.");

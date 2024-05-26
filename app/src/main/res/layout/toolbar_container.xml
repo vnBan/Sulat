@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_50sdp"
+    android:background="@color/colorQuickActionBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/_8sdp"
+    app:layout_behavior="@string/keyboard_behavior">
+<HorizontalScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnBold"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_24sdp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginEnd="@dimen/_4sdp"
+            app:icon="@drawable/ic_bold"
+            app:iconPadding="0dp"
+            app:iconTint="@color/colorIcons" />
+        <Button
+            android:id="@+id/btnItalic"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:backgroundTint="@color/colorPrimary"
+            app:icon="@drawable/ic_itallic"
+            app:iconPadding="0dp"
+            app:iconTint="@color/colorIcons" />
+        <Button
+            android:id="@+id/btnUnderline"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_24sdp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginEnd="@dimen/_4sdp"
+            app:icon="@drawable/ic_underline"
+            app:iconPadding="0dp"
+            app:iconTint="@color/colorIcons" />
+        <Button
+            android:id="@+id/btnLeft"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_24sdp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginEnd="@dimen/_4sdp"
+            app:icon="@drawable/ic_align_left"
+            app:iconPadding="0dp"
+            app:iconTint="@color/colorIcons" />
+        <Button
+            android:id="@+id/btnRight"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_24sdp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginEnd="@dimen/_4sdp"
+            app:icon="@drawable/ic_align_right"
+            app:iconPadding="0dp"
+            app:iconTint="@color/colorIcons" />
+
+        <Button
+            android:id="@+id/btnCenter"
+            style="?attr/materialIconButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:backgroundTint="@color/colorPrimary"
+            app:icon="@drawable/ic_center"
+            app:iconPadding="0dp"
+            app:iconTint="@color/colorIcons" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24ssp"
+                android:text="@string/font_size"
+                android:textColor="@color/white"
+                android:gravity="top"/>
+            <Spinner
+                android:id="@+id/spinner_font_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/font_sizes"
+                android:popupBackground="@color/colorQuickActionBackground"/>
+        </LinearLayout>
+    </LinearLayout>
+</HorizontalScrollView>
+
+</LinearLayout>
