@@ -1,11 +1,19 @@
 package com.example.sulat.ui.main;
 
+import static android.content.ContentValues.TAG;
+
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +41,9 @@ public class CreateNoteActivity extends AppCompatActivity {
     TextView txtTimeAndDate;
     ImageView imgSaveNote, imgBack;
     Spinner spinnerFontSizes;
-    Button btnItalic, btnBold, btnUnderline, btnIndent, btnOutdent, btnAlignLeft, btnAlignRight, btnAlignCenter;
+    String title, subtitle, content, docId;
+    Button btnItalic, btnBold, btnUnderline, btnIndent, btnOutdent, btnAlignLeft, btnAlignRight, btnAlignCenter, btnBullets, btnDelete, btnNumberBullets;
+    boolean isEditing = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +67,11 @@ public class CreateNoteActivity extends AppCompatActivity {
         btnAlignCenter = findViewById(R.id.btnCenter);
         btnAlignLeft = findViewById(R.id.btnLeft);
         btnAlignRight = findViewById(R.id.btnRight);
-
+        btnOutdent = findViewById(R.id.btnOutdent);
+        btnIndent = findViewById(R.id.btnIndent);
+        btnBullets = findViewById(R.id.btnBullets);
+        btnNumberBullets = findViewById(R.id.btnNumberBullets);
+        btnDelete = findViewById(R.id.btnDelete);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.font_sizes, R.layout.spinner_item);
         spinnerFontSizes.setAdapter(adapter);
         txtTimeAndDate.setText(Utility.timeStampToString(Timestamp.now()));
@@ -67,15 +81,27 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         txtNoteContent.setEditorFontColor(Color.WHITE);
         txtNoteContent.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        txtNoteContent.setPlaceholder("Type your note here...");
         //EDITOR TOGGLE FUNCTIONS
+
+        btnBold.setSelected(false);
+        btnItalic.setSelected(false);
+        btnUnderline.setSelected(false);
+
         btnItalic.setOnClickListener(v -> {
             txtNoteContent.setItalic();
+            btnItalic.setSelected(!btnItalic.isSelected());
         });
         btnBold.setOnClickListener(v -> {
             txtNoteContent.setBold();
+            btnBold.setSelected(!btnBold.isSelected());
         });
         btnUnderline.setOnClickListener(v->{
             txtNoteContent.setUnderline();
+            btnUnderline.setSelected(!btnUnderline.isSelected());
+        });
+        btnAlignLeft.setOnClickListener(v -> {
+            txtNoteContent.setAlignLeft();
         });
         btnAlignRight.setOnClickListener(v -> {
             txtNoteContent.setAlignRight();
@@ -83,11 +109,50 @@ public class CreateNoteActivity extends AppCompatActivity {
         btnAlignCenter.setOnClickListener(v -> {
             txtNoteContent.setAlignCenter();
         });
-        btnAlignCenter.setOnClickListener(v -> {
-            txtNoteContent.setAlignCenter();
+        btnOutdent.setOnClickListener(v -> {
+            txtNoteContent.setOutdent();
+        });
+        btnIndent.setOnClickListener(v -> {
+            txtNoteContent.setIndent();
+        });
+        btnBullets.setOnClickListener(v -> {
+            txtNoteContent.setBullets();
+        });
+        btnNumberBullets.setOnClickListener(v -> {
+            txtNoteContent.setNumbers();
+        });
+        spinnerFontSizes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedSize = parent.getItemAtPosition(position).toString();
+                txtNoteContent.setFontSize(parseFontSize(selectedSize));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //nothing
+            }
         });
 
+        //UPDATE NOTES
+        title = getIntent().getStringExtra("title");
+        subtitle = getIntent().getStringExtra("subtitle");
+        content = getIntent().getStringExtra("content");
+        docId = getIntent().getStringExtra("docId");
+        Log.d(TAG, "Received docId: " + docId);
+        if(docId!=null){
+            isEditing = true;
+        }
+        if(isEditing){
+            txtTitle.setText(title);
+            txtSubtitle.setText(subtitle);
+            txtNoteContent.setHtml(content);
+        }
+
+
+        //SAVE & DELETE
         imgSaveNote.setOnClickListener(v -> saveNote());
+        btnDelete.setOnClickListener(v -> deleteNote());
     }
 
     private void saveNote(){
@@ -110,7 +175,11 @@ public class CreateNoteActivity extends AppCompatActivity {
 
     private void saveToFirebase(Notes note){
         DocumentReference documentReference;
-        documentReference = Utility.getCollectionReferenceNotes().document();
+        if(isEditing){
+            documentReference = Utility.getCollectionReferenceNotes().document(docId);
+        }else {
+            documentReference = Utility.getCollectionReferenceNotes().document();
+        }
         documentReference.set(note).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -124,4 +193,34 @@ public class CreateNoteActivity extends AppCompatActivity {
             }
         });
     }
+    private void deleteNote(){
+        DocumentReference documentReference;
+        documentReference = Utility.getCollectionReferenceNotes().document(docId);
+        documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    // note is DELETED
+                    Toast.makeText(CreateNoteActivity.this, "Note deleted.", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else{
+                    Toast.makeText(CreateNoteActivity.this, "Deleting Failed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    private int parseFontSize(String selectedSize) {
+        switch (selectedSize){
+            case "Small":
+                return 12;
+            case "Medium":
+                return 16;
+            case "Large":
+                return 20;
+            case "Extra Large":
+                return 24;
+        }
+        return 0;
+    }
+
 }

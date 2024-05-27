@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/_300sdp"
+    android:layout_height="@dimen/_100sdp"
+    android:background="@drawable/background_note"
+
+    android:padding="@dimen/_4sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="@dimen/_124sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginStart="16dp"
+            android:padding="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.703">
+
+            <Button
+                android:id="@+id/btnBold"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_bold"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+
+            <Button
+                android:id="@+id/btnItalic"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_itallic"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+
+            <Button
+                android:id="@+id/btnUnderline"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_underline"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btnNumberBullets"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_format_list_numbered"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+
+            <Button
+                android:id="@+id/btnBullets"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_list_bulleted"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_124sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="48dp"
+            android:padding="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btnLeft"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_align_left"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+
+            <Button
+                android:id="@+id/btnRight"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_align_right"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+
+            <Button
+                android:id="@+id/btnCenter"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_center"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="24dp"
+            android:padding="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <Button
+                android:id="@+id/btnIndent"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_indent"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+
+            <Button
+                android:id="@+id/btnOutdent"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:backgroundTint="@color/colorPrimary"
+                app:icon="@drawable/ic_outdent"
+                app:iconPadding="0dp"
+                app:iconTint="@color/colorIcons" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

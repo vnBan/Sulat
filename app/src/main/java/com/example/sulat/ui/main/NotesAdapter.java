@@ -1,6 +1,7 @@
 package com.example.sulat.ui.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,15 @@ public class NotesAdapter extends FirestoreRecyclerAdapter<Notes, NotesAdapter.N
         noteViewHolder.title.setText(notes.getTitle());
         noteViewHolder.subtitle.setText(notes.getSubtitle());
         noteViewHolder.time.setText(notes.getTimeDate());
+        noteViewHolder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context,CreateNoteActivity.class);
+            intent.putExtra("title", notes.getTitle());
+            intent.putExtra("subtitle", notes.getSubtitle());
+            intent.putExtra("content", notes.getContent());
+            String docId = this.getSnapshots().getSnapshot(i).getId();
+            intent.putExtra("docId", docId);
+            context.startActivity(intent);
+        });
     }
 
     @NonNull
