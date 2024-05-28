@@ -37,6 +37,7 @@ public class WelcomeActivity extends AppCompatActivity{
         btnLogin.setOnClickListener(v -> {
             Intent intentLogin = new Intent(WelcomeActivity.this, LoginActivity.class);
             startActivity(intentLogin);
+            finish();
         });
 
 
@@ -44,6 +45,7 @@ public class WelcomeActivity extends AppCompatActivity{
         btnSignup.setOnClickListener(v -> {
             Intent intentSignup = new Intent(WelcomeActivity.this, SignUpActivity.class);
             startActivity(intentSignup);
+            finish();
         });
     }
 }

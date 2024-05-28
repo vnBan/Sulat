@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.Query;
 
 public class MainActivity extends AppCompatActivity {
+    RecyclerView.LayoutManager linearLayoutManager, staggeredLayoutManager;
     ImageView imageAddNoteMain, imageLogout;
     RecyclerView notesDisplay;
     NotesAdapter notesAdapter;
@@ -48,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
             Intent makeNote = new Intent(getApplicationContext(), CreateNoteActivity.class);
             startActivity(makeNote);
         });
-
+        staggeredLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        linearLayoutManager = new LinearLayoutManager(this);
         imageLogout = findViewById(R.id.imageLogout);
         imageLogout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupRecyclerView(){
         Query query = Utility.getCollectionReferenceNotes().orderBy("timeDate", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Notes> options = new FirestoreRecyclerOptions.Builder<Notes>().setQuery(query,Notes.class).build();
-        notesDisplay.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        notesDisplay.setLayoutManager(staggeredLayoutManager);
         notesAdapter = new NotesAdapter(options, this);
         notesDisplay.setAdapter(notesAdapter);
     }
@@ -88,18 +91,20 @@ public class MainActivity extends AppCompatActivity {
         Query query;
         if (searchText.isEmpty()) {
             query = Utility.getCollectionReferenceNotes().orderBy("timeDate", Query.Direction.DESCENDING);
+            notesDisplay.setLayoutManager(staggeredLayoutManager);
         } else {
             query = Utility.getCollectionReferenceNotes()
                     .orderBy("title")
                     .startAt(searchText)
                     .endAt(searchText + "\uf8ff");
+            notesDisplay.setLayoutManager(linearLayoutManager);
         }
         FirestoreRecyclerOptions<Notes> options = new FirestoreRecyclerOptions.Builder<Notes>()
                 .setQuery(query, Notes.class)
                 .build();
         notesAdapter.updateOptions(options);
     }
-
+    //TO SHOW RECYCLERVIEW IMMEDIATELY
     @Override
     protected void onStart() {
         super.onStart();

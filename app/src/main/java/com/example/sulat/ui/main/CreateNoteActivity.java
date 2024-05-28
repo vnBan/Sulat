@@ -2,6 +2,7 @@ package com.example.sulat.ui.main;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -152,7 +154,7 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         //SAVE & DELETE
         imgSaveNote.setOnClickListener(v -> saveNote());
-        btnDelete.setOnClickListener(v -> deleteNote());
+        btnDelete.setOnClickListener(v-> deleteNote());
     }
 
     private void saveNote(){
