@@ -23,14 +23,14 @@
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_200sdp"
-                android:src="@mipmap/ic_launcher"
+                android:layout_width="181dp"
+                android:layout_height="281dp"
+                android:layout_marginTop="124dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/notes_logo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/app_name" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnLogin"
@@ -40,6 +40,7 @@
                 android:backgroundTint="@color/colorAccent"
                 android:text="@string/login"
                 android:textSize="@dimen/_16ssp"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/btnRegister"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +57,7 @@
                 android:text="@string/register"
                 android:textSize="@dimen/_16ssp"
                 android:layout_marginBottom="@dimen/_20sdp"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

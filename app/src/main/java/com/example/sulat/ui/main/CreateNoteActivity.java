@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -26,12 +27,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.example.sulat.R;
 import com.example.sulat.database.Notes;
 import com.example.sulat.Utility;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
@@ -44,6 +47,7 @@ public class CreateNoteActivity extends AppCompatActivity {
     ImageView imgSaveNote, imgBack;
     Spinner spinnerFontSizes;
     String title, subtitle, content, docId;
+    BottomAppBar bottomAppBar;
     Button btnItalic, btnBold, btnUnderline, btnIndent, btnOutdent, btnAlignLeft, btnAlignRight, btnAlignCenter, btnBullets, btnDelete, btnNumberBullets;
     boolean isEditing = false;
     @Override
@@ -56,6 +60,9 @@ public class CreateNoteActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         txtTitle = findViewById(R.id.inputNoteTitle);
         txtSubtitle = findViewById(R.id.inputNoteSubtitle);
         txtNoteContent = findViewById(R.id.inputNote);
@@ -76,6 +83,8 @@ public class CreateNoteActivity extends AppCompatActivity {
         btnDelete = findViewById(R.id.btnDelete);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.font_sizes, R.layout.spinner_item);
         spinnerFontSizes.setAdapter(adapter);
+        bottomAppBar = findViewById(R.id.bottomAppBar);
+
         txtTimeAndDate.setText(Utility.timeStampToString(Timestamp.now()));
 
         imgBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
